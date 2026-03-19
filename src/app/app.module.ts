@@ -11,9 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MenssagemComponent } from './components/menssagem/menssagem.component';
 import { MaiorIdadeDirective } from './directives/maior-idade.directive';
+import { ValidandoCepDirective } from './directives/validando-cep.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, MenssagemComponent, MaiorIdadeDirective],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, CadastroComponent, SucessoCadastroComponent, MenssagemComponent, MaiorIdadeDirective, ValidandoCepDirective],
   imports: [
     BrowserModule, 
     AppRoutingModule, 

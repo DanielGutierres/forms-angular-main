@@ -61,7 +61,7 @@
       <label class="campo__etiqueta" for="email">E-mail</label>
       <input name="email" id="email" type="email" class="campo__escrita" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"/>
       <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.touched || formulario.controls['email']?.dirty)">
-      <span class="erro_texto" *ngIf="formulario.controls['email']?.errors?.
+      <span class="erro__texto" *ngIf="formulario.controls['email']?.errors?.
       ['required']">O campo de email deve ser preenchido</span>
       <span class="erro__texto" *ngIf="formulario.controls['email']?.errors?.
       ['pattern']">O campo de email deve seguir este padrão: "exemplo@dominio.com"</span>
@@ -73,8 +73,15 @@
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita" />
-      <div id="erro"></div>
+      <input name="cep" id="cep" class="campo__escrita"  ngModel required
+      #cep="ngModel" pattern="^(\d{5})(-?\d{3})$" minlength="8" maxlength="9" 
+      (blur)="consultaCEP($event, formulario)"/>
+      <div *ngIf="cep?.invalid && (cep?.touched || cep?.dirty)">
+        <app-menssagem *ngIf="cep?.errors?.
+                      ['required']" menssagem="O campo de CEP deve ser preenchido."></app-menssagem>
+        <app-menssagem *ngIf="cep?.errors?.
+                      ['pattern']" menssagem="O campo de CEP deve seguir o padrão XXXXX-XXX."></app-menssagem>
+      </div>
     </div>
 
     <div class="formulario__campo">

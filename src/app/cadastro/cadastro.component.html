@@ -1,27 +1,36 @@
 <main class="principal">
   <h2 class="principal__titulo">Dados do cadastro</h2>
 
-  <form class="principal__formulario" id="formulario" #formulario="ngForm" (ngSubmit)="cadastrar(formulario)">
+  <form
+    class="principal__formulario"
+    id="formulario"
+    #formulario="ngForm"
+    (ngSubmit)="cadastrar(formulario)"
+  >
     <h3 class="principal__subtitulo">Dados pessoais</h3>
 
     <!-- NOME COMPLETO -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input 
-        name="nome" 
-        id="nome" 
-        class="campo__escrita" 
-        ngModel 
-        required 
+      <input
+        name="nome"
+        id="nome"
+        class="campo__escrita"
+        ngModel
+        required
         minlength="2"
-        #nome="ngModel" 
-        />
-      
+        #nome="ngModel"
+      />
+
       <div *ngIf="nome?.invalid && (nome?.touched || nome?.dirty)">
-        <app-menssagem *ngIf="nome?.errors?.
-                      ['required']" menssagem="O campo de nome deve ser preenchido."></app-menssagem>
-        <app-menssagem *ngIf="nome?.errors?.
-                        ['minlength']" menssagem="O campo de nome deve conter no mínimo 2 caracteres."></app-menssagem>
+        <app-menssagem
+          *ngIf="nome?.errors?.['required']"
+          menssagem="O campo de nome deve ser preenchido."
+        ></app-menssagem>
+        <app-menssagem
+          *ngIf="nome?.errors?.['minlength']"
+          menssagem="O campo de nome deve conter no mínimo 2 caracteres."
+        ></app-menssagem>
       </div>
     </div>
 
@@ -29,29 +38,64 @@
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input name="nascimento" id="nascimento" type="date" 
-        class="campo__escrita" ngModel required maiorIdadeValidator #nascimento="ngModel"/>
+        <input
+          name="nascimento"
+          id="nascimento"
+          type="date"
+          class="campo__escrita"
+          ngModel
+          required
+          maiorIdadeValidator
+          #nascimento="ngModel"
+        />
 
-        <div *ngIf="nascimento?.invalid && (nascimento?.touched || nascimento?.dirty)">
-        <app-menssagem *ngIf="nascimento?.errors?.
-                      ['required']" menssagem="O campo de nascimento deve ser preenchido."></app-menssagem>
-        <app-menssagem *ngIf="nascimento?.errors?.
-                      ['maiorIdadeValidator']" menssagem="O usuário deve ter pelo menos 18 anos."></app-menssagem>
-      </div>
+        <div
+          *ngIf="
+            nascimento?.invalid && (nascimento?.touched || nascimento?.dirty)
+          "
+        >
+          <app-menssagem
+            *ngIf="nascimento?.errors?.['required']"
+            menssagem="O campo de nascimento deve ser preenchido."
+          ></app-menssagem>
+          <app-menssagem
+            *ngIf="nascimento?.errors?.['maiorIdadeValidator']"
+            menssagem="O usuário deve ter pelo menos 18 anos."
+          ></app-menssagem>
+        </div>
       </div>
 
-    <!-- CONTATO -->
+      <!-- CONTATO -->
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
-        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita" ngModel required
-          pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})" />
-      
+        <input
+          name="telefone"
+          id="telefone"
+          type="tel"
+          placeholder="(XX) XXXXX-XXXX"
+          class="campo__escrita"
+          ngModel
+          required
+          pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
+        />
+
         <div
-          *ngIf="(formulario.controls['telefone']?.invalid && formulario.controls['telefone']?.touched) || formulario.controls['telefone']?.dirty">
-          <span class="erro__texto" *ngIf="formulario.controls['telefone']?.errors?.
-                ['required']">O campo de telefone deve ser preenchido.</span>
-          <span class="erro__texto" *ngIf="formulario.controls['telefone']?.errors?.
-                ['pattern']">O campo de telefone está faltando algo.</span>
+          *ngIf="
+            (formulario.controls['telefone']?.invalid &&
+              formulario.controls['telefone']?.touched) ||
+            formulario.controls['telefone']?.dirty
+          "
+        >
+          <span
+            class="erro__texto"
+            *ngIf="formulario.controls['telefone']?.errors?.['required']"
+            >O campo de telefone deve ser preenchido.</span
+          >
+          <span
+            class="erro__texto"
+            *ngIf="formulario.controls['telefone']?.errors?.['pattern']"
+            >O campo de telefone está faltando algo.</span
+          >
         </div>
       </div>
     </div>
@@ -59,28 +103,65 @@
     <!-- EMAIL -->
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"/>
-      <div *ngIf="formulario.controls['email']?.invalid && (formulario.controls['email']?.touched || formulario.controls['email']?.dirty)">
-      <span class="erro__texto" *ngIf="formulario.controls['email']?.errors?.
-      ['required']">O campo de email deve ser preenchido</span>
-      <span class="erro__texto" *ngIf="formulario.controls['email']?.errors?.
-      ['pattern']">O campo de email deve seguir este padrão: "exemplo@dominio.com"</span>
+      <input
+        name="email"
+        id="email"
+        type="email"
+        class="campo__escrita"
+        ngModel
+        required
+        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+      />
+      <div
+        *ngIf="
+          formulario.controls['email']?.invalid &&
+          (formulario.controls['email']?.touched ||
+            formulario.controls['email']?.dirty)
+        "
+      >
+        <span
+          class="erro__texto"
+          *ngIf="formulario.controls['email']?.errors?.['required']"
+          >O campo de email deve ser preenchido</span
+        >
+        <span
+          class="erro__texto"
+          *ngIf="formulario.controls['email']?.errors?.['pattern']"
+          >O campo de email deve seguir este padrão: "exemplo@dominio.com"</span
+        >
       </div>
     </div>
-
 
     <h3 class="principal__subtitulo">Endereço</h3>
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita"  ngModel required
-      #cep="ngModel" pattern="^(\d{5})(-?\d{3})$" minlength="8" maxlength="9" 
-      (blur)="consultaCEP($event, formulario)"/>
+      <input
+        name="cep"
+        id="cep"
+        class="campo__escrita"
+        ngModel
+        required
+        #cep="ngModel"
+        pattern="^(\d{5})(-?\d{3})$"
+        minlength="8"
+        maxlength="9"
+        (blur)="consultaCEP($event, formulario)"
+        validadorCep
+      />
       <div *ngIf="cep?.invalid && (cep?.touched || cep?.dirty)">
-        <app-menssagem *ngIf="cep?.errors?.
-                      ['required']" menssagem="O campo de CEP deve ser preenchido."></app-menssagem>
-        <app-menssagem *ngIf="cep?.errors?.
-                      ['pattern']" menssagem="O campo de CEP deve seguir o padrão XXXXX-XXX."></app-menssagem>
+        <app-menssagem
+          *ngIf="cep?.errors?.['required']"
+          menssagem="O campo de CEP deve ser preenchido."
+        ></app-menssagem>
+        <app-menssagem
+          *ngIf="cep?.errors?.['pattern']"
+          menssagem="O campo de CEP deve seguir o padrão XXXXX-XXX."
+        ></app-menssagem>
+        <app-menssagem
+          *ngIf="cep?.errors?.['validadorCep']"
+          menssagem="CEP não encontrado.">
+        </app-menssagem>
       </div>
     </div>
 
@@ -95,7 +176,12 @@
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="complemento">Complemento</label>
-        <input name="complemento" id="complemento" class="campo__escrita" ngModel />
+        <input
+          name="complemento"
+          id="complemento"
+          class="campo__escrita"
+          ngModel
+        />
       </div>
     </div>
     <div class="formulario__campo">
@@ -141,8 +227,7 @@
           <option value="EX">Estrangeiro</option>
         </select>
       </div>
-
     </div>
     <button type="submit" class="formulario__botao">Enviar formulário</button>
-    </form>
+  </form>
 </main>
